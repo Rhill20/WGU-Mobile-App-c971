@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.TermsPage"
+             Title="Terms">
+
+    <StackLayout Padding="20">
+        <Label Text="WGU App" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 10"/>
+        <CollectionView x:Name="TermsCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnTermSelected"
+                        Margin="0,0,0,10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Swiping -->
+                    <SwipeView SwipeStarted="OnSwipeStarted"
+                               SwipeEnded="OnSwipeEnded">
+                        <SwipeView.RightItems>
+                            <SwipeItem Text="Edit" 
+                                       BackgroundColor="LightGreen" 
+                                       CommandParameter="{Binding .}"
+                                       Clicked="OnEditTermClicked" />
+                            <SwipeItem Text="Delete" 
+                                       BackgroundColor="Red" 
+                                       CommandParameter="{Binding .}"
+                                       Clicked="OnDeleteTermClicked" />
+                        </SwipeView.RightItems>
+                        <!-- Term Grid-->
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Title}" 
+                                   FontSize="Medium"
+                                   FontAttributes="Bold" 
+                                   Grid.Row="0"/>
+                            <StackLayout Orientation="Horizontal" Grid.Row="1" Spacing="10">
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}"
+                                       FontSize="Small" />
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}"
+                                       FontSize="Small" />
+                            </StackLayout>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Label Text="Swipe To Edit / Delete" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 10"/>
+        <Button Text="Add Term" Clicked="OnAddTermClicked" Margin="0,10,0,0" />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,14 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.TermDetailsPage"
+             Title="Term Details">
+    <StackLayout Padding="20">
+        <Entry x:Name="TitleEntry" Placeholder="Term Title" />
+        <Label Text="Term Start" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" Margin="10, 10, 10, 10"/>
+        <DatePicker x:Name="StartDatePicker" />
+        <Label Text="Term End" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" Margin="10, 10, 10, 10"/>
+        <DatePicker x:Name="EndDatePicker" />
+        <Button Text="Save" Clicked="OnSaveClicked" />
+        <Button Text="Delete" Clicked="OnDeleteClicked" />
+    </StackLayout>
+</ContentPage>

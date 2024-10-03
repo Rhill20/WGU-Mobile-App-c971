@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.AssessmentPage">
+    <StackLayout Padding="20">
+        <Entry x:Name="AssessmentNameEntry" Placeholder="Assessment Name" />
+
+        <!-- Start and End Date Pickers -->
+        <Label Text="Start Date:" />
+        <DatePicker x:Name="AssessmentStartDatePicker" />
+
+        <!-- Notification Toggle for Start Date -->
+        <Label Text="Notify for Assessment Start Date" />
+        <Switch x:Name="NotifyStartSwitch" IsToggled="false" />
+
+        <Label Text="End Date:" />
+        <DatePicker x:Name="AssessmentEndDatePicker" />
+
+        <!-- Notification Toggle for End Date -->
+        <Label Text="Notify for Assessment End Date" />
+        <Switch x:Name="NotifyEndSwitch" IsToggled="false" />
+
+        <Picker x:Name="AssessmentTypePicker" Title="Assessment Type">
+            <Picker.Items>
+                <x:String>Performance</x:String>
+                <x:String>Objective</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button Text="Save" Clicked="OnSaveAssessmentClicked" />
+        <Button Text="Delete" Clicked="OnDeleteAssessmentClicked" />
+    </StackLayout>
+</ContentPage>

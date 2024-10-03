@@ -1,0 +1,12 @@
+# Ignore Visual Studio temporary files, build results, and
+# build directories
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+
+# Ignore macOS specific files
+.DS_Store

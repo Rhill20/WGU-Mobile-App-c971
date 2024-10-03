@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.CourseDetailsPage">
+    <StackLayout Padding="20">
+        <Entry x:Name="TitleEntry" Placeholder="Course Title" />
+        <Label Text="Course Start" Margin="10, 10, 10, 10"/>
+        <DatePicker x:Name="StartDatePicker" />
+        <Label Text="Course End" Margin="10, 10, 10, 10"/>
+        <DatePicker x:Name="EndDatePicker" />
+        <Picker x:Name="StatusPicker" Title="Course Status">
+            <Picker.Items>
+                <x:String>In Progress</x:String>
+                <x:String>Completed</x:String>
+                <x:String>Dropped</x:String>
+                <x:String>Plan to Take</x:String>
+            </Picker.Items>
+        </Picker>
+        <Entry x:Name="InstructorNameEntry" Placeholder="Instructor Name" />
+        <Entry x:Name="InstructorPhoneEntry" Placeholder="Instructor Phone" />
+        <Entry x:Name="InstructorEmailEntry" Placeholder="Instructor Email" />
+
+        <!-- Toggle switches for notifications -->
+        <Label Text="Notify for Course Start Date" />
+        <Switch x:Name="NotifyStartSwitch" />
+
+        <Label Text="Notify for Course End Date" />
+        <Switch x:Name="NotifyEndSwitch" />
+
+        <Button Text="Save" Clicked="OnSaveClicked" />
+        <Button Text="Delete" Clicked="OnDeleteClicked" />
+    </StackLayout>
+</ContentPage>

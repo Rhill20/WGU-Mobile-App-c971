@@ -1,0 +1,71 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.CourseOverviewPage"
+             Title="Course Overview">
+    <StackLayout Padding="15" Spacing="8">
+        <Label Text="Course Overview" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 5"/>
+
+        <!-- Grid for Course Details -->
+        <Grid Padding="5" ColumnDefinitions="Auto, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,0,0,5">
+            <Label Text="{Binding Course.Title}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5"/>
+
+            <Label Text="Status:" FontSize="14" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.Status}" FontSize="14" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+
+            <Label Text="Start Date:" FontSize="14" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.StartDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="14" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+
+            <Label Text="End Date:" FontSize="14" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.EndDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="14" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"/>
+
+            <Label Text="Instructor Name:" FontSize="14" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.InstructorName}" FontSize="14" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
+
+            <Label Text="Instructor Phone:" FontSize="14" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.InstructorPhone}" FontSize="14" Grid.Row="5" Grid.Column="1" VerticalOptions="Center"/>
+
+            <Label Text="Instructor Email:" FontSize="14" Grid.Row="6" Grid.Column="0" VerticalOptions="Center" Margin="0,0,5,0"/>
+            <Label Text="{Binding Course.InstructorEmail}" FontSize="14" Grid.Row="6" Grid.Column="1" VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- Notes Section -->
+        <Editor x:Name="NotesEditor" Placeholder="Enter notes here..." Text="{Binding Course.Notes}" HeightRequest="80" Margin="0,5"/>
+        <Button Text="Save Notes" Clicked="OnSaveNotesClicked" Margin="0,3"/>
+        <Button Text="Share Notes" Clicked="OnShareNotesClicked" Margin="0,3"/>
+
+        <!-- Assessments Section -->
+        <Label Text="Assessments" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start" Margin="0, 5, 0, 3"/>
+
+        <!-- Collection for Assessments -->
+        <CollectionView x:Name="AssessmentsCollectionView" SelectionMode="None" HeightRequest="160">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView SwipeStarted="OnSwipeStarted"
+                               SwipeEnded="OnSwipeEnded">
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           BackgroundColor="LightGreen"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnEditAssessmentSwipe"/>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Red"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnDeleteAssessmentSwipe"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <StackLayout Padding="5" Orientation="Vertical" Spacing="3">
+                            <Label Text="{Binding Name}" FontSize="16"/>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}" FontSize="14"/>
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="14"/>
+                                <Label Text="{Binding Type}" FontSize="14"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Add Assessment" Clicked="OnAddAssessmentClicked" HorizontalOptions="Center" Margin="0, 8, 0, 0"/>
+    </StackLayout>
+</ContentPage>

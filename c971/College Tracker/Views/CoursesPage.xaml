@@ -1,0 +1,44 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="College_Tracker.Views.CoursesPage"
+             Title="Courses">
+
+
+    <StackLayout Padding="10">
+        
+        <Label Text="Current Courses" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 10"/>
+        <CollectionView x:Name="CoursesCollectionView" 
+                        SelectionMode="Single"
+                        SelectionChanged="OnCourseSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Swipeing for course -->
+                    <SwipeView SwipeStarted="OnSwipeStarted"
+                               SwipeEnded="OnSwipeEnded">
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           BackgroundColor="LightGreen"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnEditCourseSwipe"/>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Red"
+                                           CommandParameter="{Binding .}"
+                                           Clicked="OnDeleteCourseSwipe"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <!-- Course Grid -->
+                        <Grid Padding="10" ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" FontSize="18" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="Swipe To Edit / Delete" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 10"/>
+        <Button Text="Add Course" Clicked="OnAddCourseClicked" />
+    </StackLayout>
+</ContentPage>
